@@ -24,8 +24,9 @@ export default class DbPg {
                 : await this.getDBPool().query(sql);
             returnArray = resultPg.rows;
         } catch (error) {
-            LogHelper.logError(error);
-        }
+    console.error("DB ERROR (queryOne):", error);
+    throw error;
+}
         return returnArray;
     }
 
@@ -39,8 +40,9 @@ export default class DbPg {
                 returnEntity = resultPg.rows[0];
             }
         } catch (error) {
-            LogHelper.logError(error);
-        }
+    console.error("DB ERROR (queryOne):", error);
+    throw error;
+}
         return returnEntity;
     }
 
@@ -52,8 +54,9 @@ export default class DbPg {
                 : await this.getDBPool().query(sql);
             newId = resultPg.rows[0].id;
         } catch (error) {
-            LogHelper.logError(error);
-        }
+    console.error("DB ERROR (queryReturnId):", error);
+    throw error;
+}
         return newId;
     }
 
@@ -65,8 +68,9 @@ export default class DbPg {
                 : await this.getDBPool().query(sql);
             rowsAffected = resultPg.rowCount;
         } catch (error) {
-            LogHelper.logError(error);
-        }
+    console.error("DB ERROR (queryRowCount):", error);
+    throw error;
+}
         return rowsAffected;
     }
 }
